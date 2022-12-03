@@ -2,12 +2,14 @@
 
 from dataclasses import dataclass, field
 
+
 @dataclass
 class Elf:
     calories: list[int] = field(default_factory=list)
 
     def total(self):
         return sum(self.calories)
+
 
 if __name__ == "__main__":
     with open("input") as f:
@@ -22,7 +24,6 @@ if __name__ == "__main__":
             elf = Elf()
         else:
             elf.calories.append(int(line))
-    
+
     print(max(elf.total() for elf in elves))
     print(sum(sorted((elf.total() for elf in elves), reverse=True)[:3]))
-        

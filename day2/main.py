@@ -4,10 +4,12 @@ import enum
 import functools
 from dataclasses import dataclass, field
 
+
 class MoveT(enum.Enum):
     ROCK = 1
     PAPER = 2
     SCISSORS = 3
+
 
 def parse_move(c):
     if c in "AX":
@@ -36,6 +38,7 @@ class Move:
         else:
             return False
 
+
 def find_my_move(elf, me):
     for my_move in (Move(m) for m in MoveT):
         if elf > my_move and me == "X":
@@ -45,7 +48,8 @@ def find_my_move(elf, me):
         elif elf == my_move and me == "Y":
             return my_move
     raise RuntimeError(f"Can't parse move {me}")
-        
+
+
 def play_round(elf: Move, me: Move) -> int:
     if me > elf:
         return int(me.move.value) + 6
@@ -75,4 +79,3 @@ if __name__ == "__main__":
         me = find_my_move(elf, me)
         score += play_round(elf, me)
     print(score)
-
